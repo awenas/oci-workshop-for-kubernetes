@@ -5,6 +5,7 @@ A workshop for deploying applications to Oracle Container Engine (Kubernetes).
 ## Topics
 
 * Creating clusters
+* Deploying a stateless application
 * RBAC
 * Storage
   - Block storage
@@ -14,3 +15,4 @@ A workshop for deploying applications to Oracle Container Engine (Kubernetes).
   - Services
   - Ingress
 * Access control
+* MySQL Operator
