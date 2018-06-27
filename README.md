@@ -6,5 +6,6 @@ A workshop for deploying applications to Oracle Container Engine (Kubernetes).
 
 * Creating clusters
 * RBAC
+* Storage
 * Network policies
 * Exposing services
