@@ -11,3 +11,6 @@ A workshop for deploying applications to Oracle Container Engine (Kubernetes).
   - FSS
 * Network policies
 * Exposing services
+  - Services
+  - Ingress
+* Access control
