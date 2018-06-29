@@ -1,10 +1,11 @@
 # OCI Workshop For Kubernetes
 
-A workshop for deploying applications to Oracle Container Engine (Kubernetes).
+A series of workshops for deploying applications to Oracle Container Engine (Kubernetes).
 
 ## Topics
 
 * Creating clusters
+  - Oracle Container Engine
 * Deploying a stateless application
 * Storage
   - Block storage
