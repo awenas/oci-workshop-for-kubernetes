@@ -12,6 +12,8 @@ Block volumes can be attached to Kubernetes nodes using the oci-volume-provision
 
 Block Volumes are only accessible to instances in the same availability domain. You cannot move a volume between availability domains or regions. Block Volume volumes can be created in sizes ranging from **50 GB** to **32 TB** in 1 GB increments
 
+![OCI Block Storage K8s](https://github.com/owainlewis/oci-workshop-for-kubernetes/blob/master/images/oci-block-volume-k8s.png?raw=true)
+
 ## File Storage (FSS)
 
 See https://docs.cloud.oracle.com/iaas/Content/File/Concepts/filestorageoverview.htm
