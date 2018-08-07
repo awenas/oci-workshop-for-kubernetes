@@ -9,7 +9,7 @@ A series of workshops for deploying modern, cloud-native software applications t
 * Deploying a stateless application
 * Storage
   - Block storage
-  - FSS
+  - File Storage with FSS (NFSv3)
 * Exposing services
   - Services
   - Ingress
