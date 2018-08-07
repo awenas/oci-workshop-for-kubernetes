@@ -1,6 +1,6 @@
 # OCI Workshop For Kubernetes
 
-A series of workshops for deploying applications to Oracle Container Engine (Kubernetes).
+A series of workshops for deploying modern, cloud-native software applications to Oracle Container Engine (Kubernetes).
 
 ## Topics
 
