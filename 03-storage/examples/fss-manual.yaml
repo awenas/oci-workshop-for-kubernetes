@@ -11,9 +11,9 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     # Replace this with the path you set in OCI
-    path: /volume1
+    path: /
     # Replace this with the IP of your FSS file system in OCI
-    server: 10.0.0.4
+    server: 10.0.0.11
     readOnly: false
 ---
 apiVersion: v1
