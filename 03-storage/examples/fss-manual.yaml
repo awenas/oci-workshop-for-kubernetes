@@ -9,6 +9,8 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nosuid
   nfs:
     # Replace this with the path you set in OCI
     path: /
