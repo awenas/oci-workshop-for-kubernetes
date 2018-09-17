@@ -73,3 +73,24 @@ provisioner: oracle.com/oci-fss
 parameters:
   mntTargetId: {{MNT_TARGET_OCID}}
 ```
+
+Next we create a PVC. Note that, although we need to provide a storage capacity in the request, this is not used for FSS file systems and exists purely to make Kubernetes happy since resources.requests.storage is a required field in a PVC.
+
+```yaml
+cat <<'$EOF' | kubectl create -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: demooci
+spec:
+  storageClassName: "oci-fss"
+  selector:
+    matchLabels:
+      failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+$EOF
+```
