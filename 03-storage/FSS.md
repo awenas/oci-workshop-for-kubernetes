@@ -1,5 +1,7 @@
 # Using File Storage on OCI Kubernetes
 
+### Deploy the FSS Volume Provisioner
+
 First we need to deploy the OCI Volume Provisioner in FSS mode. We do this by setting the PROVISIONER_TYPE to `oracle.com/oci-fss`
 
 ```yaml
@@ -38,7 +40,9 @@ spec:
 $EOF
 ```
 
-Create a new Storage Class
+### Create a new Storage Class
+
+Next we create a Storage Class:
 
 ```yaml
 kind: StorageClass
@@ -74,6 +78,8 @@ parameters:
   mntTargetId: {{MNT_TARGET_OCID}}
 ```
 
+### Create a PVC
+
 Next we create a PVC. Note that, although we need to provide a storage capacity in the request, this is not used for FSS file systems and exists purely to make Kubernetes happy since resources.requests.storage is a required field in a PVC.
 
 ```yaml
@@ -95,6 +101,8 @@ spec:
       storage: 50Gi
 $EOF
 ```
+
+### Consume the PVC storage in a Pod
 
 Now that we have an FSS file system bound to our PVC, we can reference it in a Pod.
 
