@@ -91,9 +91,9 @@ metadata:
 spec:
   storageClassName: "oci-fss"
   # The following selector is optional and controls which AD the volume is provisioned in.
-  # selector:
-  #   matchLabels:
-  #     failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
+  selector:
+    matchLabels:
+      failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
   accessModes:
     - ReadWriteOnce
   resources:
