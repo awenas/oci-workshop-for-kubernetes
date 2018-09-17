@@ -110,13 +110,13 @@ spec:
       persistentVolumeClaim:
         claimName: nginx-fss-volume
   containers:
-    - name: task-pv-container
+    - name: nginx
       image: nginx
       ports:
         - containerPort: 80
-          name: "http-server"
+          name: http
       volumeMounts:
-      - mountPath: "/usr/share/nginx/html"
-        name: task-pv-storage
+      - mountPath: /usr/share/nginx/html
+        name: nginx
 $EOF
 ```
