@@ -81,12 +81,13 @@ cat <<'$EOF' | kubectl create -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: demooci
+  name: nginx-fss-volume
 spec:
   storageClassName: "oci-fss"
-  selector:
-    matchLabels:
-      failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
+  # The following selector is optional and controls which AD the volume is provisioned in.
+  # selector:
+  #   matchLabels:
+  #     failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
   accessModes:
     - ReadWriteOnce
   resources:
