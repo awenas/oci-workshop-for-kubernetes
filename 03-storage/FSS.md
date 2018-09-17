@@ -95,3 +95,28 @@ spec:
       storage: 50Gi
 $EOF
 ```
+
+Now that we have an FSS file system bound to our PVC, we can reference it in a Pod.
+
+```yaml
+cat <<'$EOF' | kubectl create -f -
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ocidemo-fss
+spec:
+  volumes:
+    - name: nginx
+      persistentVolumeClaim:
+        claimName: nginx-fss-volume
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: task-pv-storage
+$EOF
+```
