@@ -103,7 +103,7 @@ cat <<'$EOF' | kubectl create -f -
 kind: Pod
 apiVersion: v1
 metadata:
-  name: ocidemo-fss
+  name: nginx
 spec:
   volumes:
     - name: nginx
