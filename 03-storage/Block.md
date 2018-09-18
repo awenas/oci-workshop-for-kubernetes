@@ -36,4 +36,18 @@ spec:
 $EOF
 ```
 
+Create a storage class
+
+```yaml
+cat <<'$EOF' | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: oci-block-storage
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "true"
+provisioner: oracle.com/oci
+$EOF  
+```
+
 
