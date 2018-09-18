@@ -97,7 +97,7 @@ spec:
     matchLabels:
       failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 50Gi
