@@ -59,7 +59,6 @@ apiVersion: v1
 metadata:
   name: my-volume
 spec:
-  storageClassName: oci-block-storage
   selector:
     matchLabels:
       failure-domain.beta.kubernetes.io/zone: PHX-AD-1
