@@ -45,11 +45,13 @@ $EOF
 Next we create a Storage Class:
 
 ```yaml
+cat <<'$EOF' | kubectl create -f -
 kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
 metadata:
   name: oci-fss
 provisioner: oracle.com/oci-fss
+$EOF
 ```
 
 You can optionally choose to provide a subnetId in the Storage Class parameters such that mount targets 
