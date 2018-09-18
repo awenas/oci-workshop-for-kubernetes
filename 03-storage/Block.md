@@ -7,7 +7,7 @@ cat <<'$EOF' | kubectl create -f -
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: oci-block-storage-provisioner
+  name: oci-volume-provisioner
   namespace: kube-system
 spec:
   replicas: 1
@@ -25,6 +25,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: PROVISIONER_TYPE
+              value: oracle.com/oci
           volumeMounts:
             - name: config
               mountPath: /etc/oci/
