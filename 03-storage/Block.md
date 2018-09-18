@@ -57,7 +57,7 @@ cat <<'$EOF' | kubectl create -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: demooci
+  name: my-volume
 spec:
   storageClassName: oci-block-storage
   selector:
