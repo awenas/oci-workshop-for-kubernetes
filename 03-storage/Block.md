@@ -25,8 +25,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            - name: PROVISIONER_TYPE
-              value: oracle.com/oci-fss
           volumeMounts:
             - name: config
               mountPath: /etc/oci/
