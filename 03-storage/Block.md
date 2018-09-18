@@ -36,6 +36,6 @@ spec:
           secret:
             secretName: oci-volume-provisioner
 $EOF
-```yaml
+```
 
 
