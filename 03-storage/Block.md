@@ -50,4 +50,24 @@ provisioner: oracle.com/oci
 $EOF  
 ```
 
+Create a PVC
+
+```yaml
+cat <<'$EOF' | kubectl create -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: demooci
+spec:
+  storageClassName: oci-block-storage
+  selector:
+    matchLabels:
+      failure-domain.beta.kubernetes.io/zone: PHX-AD-1
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+$EOF  
+```
 
