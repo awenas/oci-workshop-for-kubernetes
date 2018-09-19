@@ -94,6 +94,12 @@ spec:
 $EOF
 ```
 
+Check if the PVC is bound
+
+```sh
+❯ kubectl get pvc                                                                                   ()
+```
+
 ### Consume the PVC storage in a Pod
 
 Now that we have an FSS file system bound to our PVC, we can reference it in a Pod.
@@ -124,7 +130,8 @@ $EOF
 Ensure that the Pod is running correctly 
 
 ```sh
-❯ kubectl get po                                                                                                                                                                                                                           ()
+❯ kubectl get po
+
 NAME      READY     STATUS    RESTARTS   AGE
 nginx     1/1       Running   0          7m
 ```
