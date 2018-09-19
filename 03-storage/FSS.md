@@ -2,7 +2,7 @@
 
 ### Install
 
-First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. If you're using OKE (> x.x.x) then the oci-fss-volume-provisioner will already be installed as part of your cluster. 
+First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. Newer versions of OKE (Oracle Container Engine) may install the oci-fss-volume-provisioner as part of your cluster. 
 
 Ensure that you set PROVISIONER_TYPE to `oracle.com/oci-fss`
 
