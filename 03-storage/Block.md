@@ -1,6 +1,10 @@
 
 
-Deploy the block storage provisioner
+# Deploying the OCI Volume Provisioner 
+
+The OCI Volume Provisioner is responsible for dynamically provisioning block volumes.
+
+### Deploy 
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
