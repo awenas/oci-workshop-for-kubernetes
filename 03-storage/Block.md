@@ -1,17 +1,17 @@
+# Using Block Storage on OCI Kubernetes 
 
+The OCI Volume Provisioner is responsible for dynamically provisioning block volumes and file systems. If you're using the Oracle managed Kubernetes (Oracle Container Engine) then the provisioner will already be installed on your cluster.
 
-# Deploying the OCI Volume Provisioner 
+### Deploy
 
-The OCI Volume Provisioner is responsible for dynamically provisioning block volumes.
-
-### Deploy 
+The following is only needed if you're running a self managed Kubernetes cluster on OCI.
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: oci-volume-provisioner
+  name: oci-block-volume-provisioner
   namespace: kube-system
 spec:
   replicas: 1
@@ -42,7 +42,7 @@ spec:
 $EOF
 ```
 
-Create a storage class
+### Create a StorageClass
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
@@ -56,14 +56,14 @@ provisioner: oracle.com/oci
 $EOF  
 ```
 
-Create a PVC
+### Create a PVC
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: my-volume
+  name: nginx-block-volume
 spec:
   selector:
     matchLabels:
@@ -76,3 +76,36 @@ spec:
 $EOF  
 ```
 
+### Consume storage
+
+```yaml
+cat <<'$EOF' | kubectl create -f -
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  volumes:
+    - name: nginx
+      persistentVolumeClaim:
+        claimName: nginx-block-volume
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: http
+      volumeMounts:
+      - mountPath: /usr/share/nginx/html
+        name: nginx
+$EOF 
+```
+
+Ensure that the Pod is running correctly 
+
+```sh
+❯ kubectl get po
+
+NAME      READY     STATUS    RESTARTS   AGE
+nginx     1/1       Running   0          7m
+```
