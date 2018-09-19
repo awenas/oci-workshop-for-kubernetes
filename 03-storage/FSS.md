@@ -1,8 +1,10 @@
 # Using File Storage on OCI Kubernetes
 
-### Deploy the FSS Volume Provisioner
+### Install
 
-First we need to deploy the OCI Volume Provisioner in FSS mode. We do this by setting the PROVISIONER_TYPE to `oracle.com/oci-fss`
+First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. If you're using OKE (> x.x.x) then the oci-fss-volume-provisioner will already be installed. 
+
+Ensure that you set PROVISIONER_TYPE to `oracle.com/oci-fss`
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
