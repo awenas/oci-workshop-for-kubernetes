@@ -121,25 +121,11 @@ spec:
 $EOF
 ```
 
-Create a second Pod
+Ensure that the Pod is running correctly 
 
-```yaml
-cat <<'$EOF' | kubectl create -f -
-kind: Pod
-apiVersion: v1
-metadata:
-  name: redis-server
-spec:
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: nginx-fss-volume
-  containers:
-    - name: redis
-      image: redis
-      volumeMounts:
-      - mountPath: /etc/data
-        name: data
-$EOF
+```sh
+❯ kubectl get po                                                                                                                                                                                                                           ()
+NAME      READY     STATUS    RESTARTS   AGE
+nginx     1/1       Running   0          7m
 ```
 
