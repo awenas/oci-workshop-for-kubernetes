@@ -44,20 +44,9 @@ $EOF
 
 ### Create a new Storage Class
 
-Next we create a Storage Class:
+There are two ways to configure the StorageClass for FSS. Either you can specify a `subnetId` parameter and have the provisioner dynamically create a new mount target, or, you can specify an existing mount target OCID.
 
-```yaml
-cat <<'$EOF' | kubectl create -f -
-kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
-metadata:
-  name: oci-fss
-provisioner: oracle.com/oci-fss
-$EOF
-```
-
-You can optionally choose to provide a subnetId in the Storage Class parameters such that mount targets 
-will be provisioned on this subnet.
+#### Dynamically provision a new MountTarget
 
 ```yaml
 kind: StorageClass
@@ -69,8 +58,7 @@ parameters:
   subnetId: {{SUBNET_OCID}}
 ```
 
-Additionally you can specify a specific mount target in the storage class also if you already have a mount target to use for FSS volumes.
-
+#### Use an existing Mount Target
 
 ```yaml
 kind: StorageClass
@@ -94,7 +82,7 @@ metadata:
   name: nginx-fss-volume
 spec:
   storageClassName: oci-fss
-  # The following selector is optional and controls which AD the volume is provisioned in.
+  # The following selector controls which AD the file system is provisioned in.
   selector:
     matchLabels:
       failure-domain.beta.kubernetes.io/zone: PHX-AD-2
