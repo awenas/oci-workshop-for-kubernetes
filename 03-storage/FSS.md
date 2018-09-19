@@ -44,7 +44,7 @@ $EOF
 
 ### Create a new Storage Class
 
-There are two ways to configure the StorageClass for FSS. Either you can specify a `subnetId` parameter and have the provisioner dynamically create a new mount target, or, you can specify an existing mount target OCID.
+There are two ways to configure the StorageClass for FSS. Either you can specify a `subnetId` parameter and have the provisioner dynamically create a new mount target, or, you can specify an existing mount target OCID with a `mntTargetId` parameter.
 
 #### Dynamically provision a new MountTarget
 
