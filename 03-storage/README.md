@@ -1,19 +1,13 @@
 # Storage
 
-Like most public clouds, Oracle Cloud Infrastructure supports three distinct types of storage. File, Block and Object. 
+Like most public clouds, Oracle Cloud Infrastructure supports three distinct types of storage. file storage, block storage and object/blob storage. 
 
-This section will discuss how we can use these types of storage inside a Kubernetes cluster.
+This section will discuss how we can use these storage types inside a Kubernetes cluster.
 
 ## Block Storage
 
-See https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm
+See [here](BlockStorage.md)
 
-Block volumes can be attached to Kubernetes nodes using the oci-volume-provisioner. Block volumes are attached to a node using iSCSI. The obvious thing to note about block storage inside Kubernetes is that a the block volumes must be attached to the same Kubernetes Node as the Pod is running on. This means that if you have 5 Pods, they must all run on a single node. 
+## File Storage
 
-Block Volumes are only accessible to instances in the same availability domain. You cannot move a volume between availability domains or regions. Block Volume volumes can be created in sizes ranging from **50 GB** to **32 TB** in 1 GB increments
-
-![OCI Block Storage K8s](https://github.com/owainlewis/oci-workshop-for-kubernetes/blob/master/images/oci-block-volume-k8s.png?raw=true)
-
-## File Storage (FSS)
-
-See https://docs.cloud.oracle.com/iaas/Content/File/Concepts/filestorageoverview.htm
+See [here](FileStorage.md)
