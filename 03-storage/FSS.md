@@ -9,7 +9,7 @@ cat <<'$EOF' | kubectl create -f -
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: oci-volume-provisioner
+  name: oci-fss-volume-provisioner
   namespace: kube-system
 spec:
   replicas: 1
