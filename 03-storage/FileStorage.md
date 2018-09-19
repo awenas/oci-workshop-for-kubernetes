@@ -1,5 +1,10 @@
 # Using File Storage on OCI Kubernetes
 
+There are two ways to use File Storage service within Kubernetes on OCI. You can either 
+
+1. Manually create a file system and treat it as an NFS volume type (see [here](examples/fss-manual.yml) for an example)
+2. Use a dynamic provisioner to create file systems for you automatically
+
 ### Install
 
 First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. Newer versions of OKE (Oracle Container Engine) may install the oci-fss-volume-provisioner as part of your cluster. 
