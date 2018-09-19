@@ -91,11 +91,11 @@ apiVersion: v1
 metadata:
   name: nginx-fss-volume
 spec:
-  storageClassName: "oci-fss"
+  storageClassName: oci-fss
   # The following selector is optional and controls which AD the volume is provisioned in.
   selector:
     matchLabels:
-      failure-domain.beta.kubernetes.io/zone: "PHX-AD-1"
+      failure-domain.beta.kubernetes.io/zone: PHX-AD-2
   accessModes:
     - ReadWriteMany
   resources:
