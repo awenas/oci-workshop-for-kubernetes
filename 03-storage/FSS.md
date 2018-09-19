@@ -97,7 +97,7 @@ $EOF
 Check if the PVC is bound
 
 ```sh
-❯ kubectl get pvc                                                                                   ()
+❯ kubectl get pvc
 ```
 
 ### Consume the PVC storage in a Pod
