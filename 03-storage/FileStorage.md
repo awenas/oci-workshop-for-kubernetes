@@ -2,7 +2,7 @@
 
 There are two ways to use File Storage service within Kubernetes on OCI. You can either 
 
-1. Manually create a file system and treat it as an NFS volume type (see [here](examples/fss-manual.yml) for an example)
+1. Manually create a file system and treat it as an NFS volume type (see [here](examples/fss-manual.yaml) for an example)
 2. Use a dynamic provisioner to create file systems for you automatically
 
 ### Install
