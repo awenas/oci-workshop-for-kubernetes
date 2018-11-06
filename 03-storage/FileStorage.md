@@ -2,77 +2,33 @@
 
 There are two ways to use File Storage service within Kubernetes on OCI. You can either 
 
-1. Manually create a file system and treat it as an NFS volume type (see [here](examples/fss-manual.yaml) for an example)
-2. Use a dynamic provisioner to create file systems for you automatically
+1. Manually create a file system and treat it as an NFS volume type (see [here](examples/fss-manual.yaml) for an example).
+2. Use a plugin to dynamically create file systems for you automatically.
 
 ### Install
 
-First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. Newer versions of OKE (Oracle Container Engine) may install the oci-fss-volume-provisioner as part of your cluster. 
+First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. 
 
-Ensure that you set PROVISIONER_TYPE to `oracle.com/oci-fss`
+### Create a mount target
+
+```
+oci fs mount-target create --availability-domain=UpwH:EU-FRANKFURT-1-AD-1 \
+--compartment-id=ocid1.compartment.oc1..aaaaaaaa... \
+--subnet-id=ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaa...
+```
+
+### Create a storage class
 
 ```yaml
 cat <<'$EOF' | kubectl create -f -
-apiVersion: apps/v1beta1
-kind: Deployment
-metadata:
-  name: oci-fss-volume-provisioner
-  namespace: kube-system
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: oci-volume-provisioner
-    spec:
-      serviceAccountName: oci-volume-provisioner
-      containers:
-        - name: oci-volume-provisioner
-          image: iad.ocir.io/oracle/oci-volume-provisioner:0.9.0
-          env:
-            - name: NODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-            - name: PROVISIONER_TYPE
-              value: oracle.com/oci-fss
-          volumeMounts:
-            - name: config
-              mountPath: /etc/oci/
-              readOnly: true
-      volumes:
-        - name: config
-          secret:
-            secretName: oci-volume-provisioner
-$EOF
-```
-
-### Create a new Storage Class
-
-There are two ways to configure a StorageClass for FSS. Either you can specify a `subnetId` parameter and have the provisioner dynamically create a new mount target, or, you can specify an existing mount target OCID with a `mntTargetId` parameter.
-
-#### Dynamically provision a new MountTarget
-
-```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
 metadata:
   name: oci-fss
 provisioner: oracle.com/oci-fss
 parameters:
-  subnetId: {{SUBNET_OCID}}
-```
-
-#### Use an existing Mount Target
-
-```yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
-metadata:
-  name: oci-fss
-provisioner: oracle.com/oci-fss
-parameters:
-  mntTargetId: {{MNT_TARGET_OCID}}
+  mntTargetId: ocid1.mounttarget.oc1.eu_frankfurt_1.aaaaaby27ve2hsadmzzgcllqojxwiotfouwwm4tbnzvwm5lsoqwtcllbmqwteaaa
+$EOF  
 ```
 
 ### Create a PVC
@@ -90,12 +46,12 @@ spec:
   # The following selector controls which AD the file system is provisioned in.
   selector:
     matchLabels:
-      failure-domain.beta.kubernetes.io/zone: PHX-AD-2
+      failure-domain.beta.kubernetes.io/zone: EU-FRANKFURT-1-AD-1
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 50Gi
+      storage: 100Gi
 $EOF
 ```
 
