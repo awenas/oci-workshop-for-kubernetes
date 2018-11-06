@@ -9,10 +9,12 @@ There are two ways to use File Storage service within Kubernetes on OCI. You can
 
 First we need to install the OCI Volume Provisioner in FSS mode if it's not already installed in your cluster. 
 
+https://github.com/oracle/oci-cloud-controller-manager/tree/master/manifests/volume-provisioner
+
 ### Create a mount target
 
 ```
-oci fs mount-target create --availability-domain=UpwH:EU-FRANKFURT-1-AD-1 \
+oci fs mount-target create --availability-domain=UpwH:PHX-AD-1 \
 --compartment-id=ocid1.compartment.oc1..aaaaaaaa... \
 --subnet-id=ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaa...
 ```
@@ -27,7 +29,7 @@ metadata:
   name: oci-fss
 provisioner: oracle.com/oci-fss
 parameters:
-  mntTargetId: ocid1.mounttarget.oc1.eu_frankfurt_1.aaaaaby27ve2hsadmzzgcllqojxwiotfouwwm4tbnzvwm5lsoqwtcllbmqwteaaa
+  mntTargetId: ocid1.mounttarget.oc1.phx.aaaaaa4np2soafcrobuhqllqojxwiotqnb4c2ylefuyqaaaa
 $EOF  
 ```
 
@@ -46,7 +48,7 @@ spec:
   # The following selector controls which AD the file system is provisioned in.
   selector:
     matchLabels:
-      failure-domain.beta.kubernetes.io/zone: EU-FRANKFURT-1-AD-1
+      failure-domain.beta.kubernetes.io/zone: AD-1
   accessModes:
     - ReadWriteMany
   resources:
@@ -96,4 +98,6 @@ Ensure that the Pod is running correctly
 NAME      READY     STATUS    RESTARTS   AGE
 nginx     1/1       Running   0          7m
 ```
+
+Data written to /usr/share/nginx/html will be persisted to the underlying OCI file system.
 
