@@ -26,7 +26,7 @@ spec:
   storageClassName: oci-block-storage
   selector:
     matchLabels:
-      failure-domain.beta.kubernetes.io/zone: EU-FRANKFURT-1-AD-1
+      failure-domain.beta.kubernetes.io/zone: AD-1
   accessModes:
     - ReadWriteOnce
   resources:
